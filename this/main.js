@@ -13,10 +13,10 @@ function foo() {
     return "姓名：" + this.name;
 }
 personA.describe(); //张三
-personB.describe(); // 李四  
+personB.describe(); // 李四
 
 let bar = personB.describe;
-bar() // 作为普通函数调用 this指向gloabl
+bar(); // 作为普通函数调用 this指向gloabl
 
 // ----------------------------------------------------------------
 
@@ -29,18 +29,18 @@ far(); //  cp
 // ----------------------------------------------------------------
 
 // 构造函数
-let Person = function (p) {
-    this.p = p;
+const Person = function (p) {
+    this.name = name;
 };
-let personC = new Person("Hello World!");
-personC.p; // Hello World!
+const personC = new Person("chengp");
+personC.p; // chengp!
 // ----------------------------------------------------------------
 
 // 绑定this call
 let obj1 = {};
 function fn() {
     return this;
-};
+}
 // 普通函数指向global对象
 let isGlobal = fn() === globalThis; // true
 // this指向obj1
@@ -92,10 +92,10 @@ let newAdd = add.bind(obj, 5);
 newAdd(5); // 20
 
 // 通过bind绑定数组处理方法中的 this
-const p = {
+const person = {
     name: "张三",
     times: [1, 2, 3],
-    print: function () {
+    sayName: function () {
         this.times.forEach(
             function (n) {
                 console.log(this.name);
@@ -103,4 +103,4 @@ const p = {
         );
     },
 };
-p.print();
+person.sayName();
