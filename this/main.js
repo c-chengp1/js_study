@@ -3,23 +3,21 @@
 // 指向调用对象
 const personA = {
     name: "张三",
-    describe: f,
+    describe: foo,
 };
 const personB = {
     name: "李四",
-    describe: f,
-    action: {
-        eat: function () {
-            console.log(this.name);
-        },
-    },
+    describe: foo,
 };
-function f() {
+function foo() {
     return "姓名：" + this.name;
 }
 personA.describe(); //张三
-personB.describe(); // 李四
-personB.action.eat(); // undefined 作为普通函数
+personB.describe(); // 李四  
+
+let bar = personB.describe;
+bar() // 作为普通函数调用 this指向gloabl
+
 // ----------------------------------------------------------------
 
 // 普通函数使用
@@ -40,14 +38,13 @@ personC.p; // Hello World!
 
 // 绑定this call
 let obj1 = {};
-
-let fn = function () {
+function fn() {
     return this;
 };
 // 普通函数指向global对象
-let a = fn() === globalThis; // true
+let isGlobal = fn() === globalThis; // true
 // this指向obj1
-let b = fn.call(obj1) === obj1; // true
+let isObj1 = fn.call(obj1) === obj1; // true
 
 var obj2 = {};
 let c = Object.prototype.hasOwnProperty.call(obj2, "toString"); // false
@@ -63,7 +60,6 @@ console.log(arr2);
 // ----------------------------------------------------------------
 
 // this bind函数
-
 let date = new Date();
 let getTime = date.getTime.bind(d);
 let print = getTime();
@@ -72,7 +68,7 @@ console.log(print);
 // 更改this对象
 let counter = {
     count: 0,
-    inc: function () {
+    increment: function () {
         this.count++;
     },
 };
@@ -80,7 +76,7 @@ let counter2 = {
     count: 100,
 };
 
-let func = counter.inc.bind(counter2);
+let func = counter.increment.bind(counter2);
 func();
 counter2.count; // 101
 
@@ -88,7 +84,6 @@ counter2.count; // 101
 const add = function (x, y) {
     return x * this.m + y * this.n;
 };
-
 let point = {
     m: 2,
     n: 2,
