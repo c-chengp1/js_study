@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>socket</p>
+    <button id="btn-send">发送消息</button>
+    <script>
+      const ws = new WebSocket("ws://192.168.0.104:8080");
+      ws.onopen = () => {
+        console.log("opened");
+      };
+      ws.onmessage = (event) => {
+        console.log(event.data);
+      };
+      const btn = document.getElementById("btn-send");
+      btn.addEventListener("click", () => {
+        ws.send("我是程鹏2");
+      });
+    </script>
+  </body>
+</html>

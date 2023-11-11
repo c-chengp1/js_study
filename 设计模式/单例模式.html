@@ -1,0 +1,143 @@
+<!-- <script>
+    // 单例模式
+    // 1.1
+    // function Singleton(name) {
+    //     this.name = name;
+    //     this.instance = null;
+    // }
+
+    // Singleton.prototype.getName = function () {
+    //     console.log(this.name);
+    // }
+
+    // Singleton.getInstance = function (name) {
+    //     if (!this.instance) {
+    //         this.instance = new Singleton(name);
+    //     }
+    //     return this.instance;
+    // };
+    // ----------------------------------------------------------------
+    // 1.2
+    // function Singleton(name) {
+    //     this.name = name;
+    // }
+    // Singleton.prototype.getName = function () {
+    //     alert(this.name);
+    // };
+    // Singleton.getInstance = (function () {
+    //     var instance = null;
+    //     return function (name) {
+    //         if (!instance) {
+    //             instance = new Singleton(name);
+    //         }
+    //         return instance;
+    //     }
+    // })();
+
+    // const a = Singleton.getInstance('sven1'); //1{name: "sven1",instance: null}  2{ name: "sven1",}
+    // const b = Singleton.getInstance('sven2');
+    // const c = a === b
+    // ------------------------------------------------------------------
+    // let CreateDiv = (function () {
+    //     let instance;
+    //     function CreateDiv(html) {
+    //         if (instance) {
+    //             return instance;
+    //         }
+    //         this.html = html;
+    //         this.init();
+    //         return instance = this;
+    //     };
+
+    //     CreateDiv.prototype.init = function () {
+    //         let div = document.createElement('div');
+    //         div.innerHTML = this.html;
+    //         document.body.appendChild(div);
+    //     };
+    //     return CreateDiv;
+    // })();
+
+    // let a = new CreateDiv('sven1');
+    // ------------------------------------------------------------
+    // 1.3用代理实现单例模式
+    // function CreateDiv(html) {
+    //     this.html = html;
+    //     this.init();
+    // };
+    // CreateDiv.prototype.init = function () {
+    //     let div = document.createElement('div');
+    //     div.innerHTML = this.html;
+    //     document.body.appendChild(div);
+    // };
+
+    // let ProxySingletonCreateDiv = (function () {
+    //     let instance;
+    //     return function (html) {
+    //         if (!instance) {
+    //             instance = new CreateDiv(html);
+    //         }
+    //         return instance;
+    //     }
+    // })();
+
+    // const a = new ProxySingletonCreateDiv('sven1');
+
+    //1.4 变量
+    // 命名空间
+    // let MyApp = {}
+    // MyApp.nameSpace = function (name) {
+    //     let parts = name.split('.');
+    //     let current = MyApp;
+    //     for (let i in parts) {
+    //         if (!current[parts[i]]) {
+    //             current[parts[i]] = {};
+    //         }
+    //         current = current[parts[i]];
+    //     }
+    // };
+    // MyApp.namespace('event');
+    // MyApp.namespace('dom.style');
+    // 使用闭包封装私有变量
+    // let user = (function () {
+    //     let __name = 'sven',
+    //         __age = 29;
+    //     return {
+    //         getUserInfo: function () {
+    //             return __name + '-' + __age;
+    //         }
+    //     }
+    // })();
+    // let a = user.getUserInfo()
+    //1.5惰性单例
+
+
+</script> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="loginBtn">登录</button>
+    <script>
+        let createLoginLayer = function () {
+            let div = document.createElement('div');
+            div.innerHTML = '我是登录浮窗';
+            div.style.display = 'none';
+            document.body.appendChild(div);
+            return div;
+        }
+        document.getElementById('loginBtn').onclick = function () {
+            let loginLayer = createLoginLayer();
+            loginLayer.style.display = 'block';
+        };
+    </script>
+</body>
+
+</html>

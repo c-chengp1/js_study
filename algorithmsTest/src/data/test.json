@@ -1,0 +1,23 @@
+{
+  "node": {
+    "val": 1,
+    "next": null
+  },
+  "dummy": {
+    "val": 3,
+    "next": {
+      "val": 2,
+      "next": {
+        "val": 1,
+        "next": null
+      }
+    }
+  },
+  "ahead": {
+    "val": 2,
+    "next": {
+      "val": 3,
+      "next": null
+    }
+  }
+}
